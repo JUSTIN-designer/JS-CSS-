@@ -23,6 +23,7 @@ main .left {
   background-color: blue;
   float: left;
   margin-left: -100%;
+  /*与双飞翼不同的代码*/
   position: relative;
   left: -200px;
 }
@@ -32,6 +33,7 @@ main .right {
   background-color: red;
   float: left;
   margin-left: -200px;
+  /*与双飞翼不同的代码*/
   position: relative;
   right: -200px;
 }
