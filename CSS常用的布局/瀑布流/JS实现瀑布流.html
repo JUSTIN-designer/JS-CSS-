@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>瀑布流JS实现</title>
+    <style>
+        html,body{
+            margin: 0px;
+            padding: 0px;
+            background-color: yellow;
+        }
+        main{
+            position: relative;
+        }
+        .imgTank{
+            float: left;
+            position:absolute;
+        }
+        .imgTank>img{
+            width: 100%;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var imgArr=document.getElementsByClassName("imgTank")
+            var window_length = window.innerWidth
+            var line = 5
+            var img_width = Math.floor((window_length-10*line) / line)
+            var heightArr = []
+            console.log(img_width)
+            console.log(window.innerWidth,window.outerWidth,screen.width)
+            for(var i = 0 ; i<imgArr.length ; i++){
+                imgArr[i].style.width=img_width + 'px'
+                if(i<line){
+                    var img_height = 0
+                    img_height=imgArr[i].offsetHeight
+                    heightArr.push(img_height)
+                    imgArr[i].style.top=0+"px"
+                    imgArr[i].style.left=(img_width+10)*i+'px'
+                }else{
+                    for(var num = 0;num<line;num++){
+                        if(num==0){
+                            var minHeight = heightArr[0]
+                            var index=0
+                        }else{
+                            if(heightArr[num]<minHeight){ 
+                            minHeight=heightArr[num]
+                            index=num
+                            }
+                        }
+                    }
+                    heightArr[index]+=(30+imgArr[i].offsetHeight)
+                    imgArr[i].style.top=minHeight+30+"px"
+                    imgArr[i].style.left=(img_width+10)*index+'px'
+                    console.log(imgArr[i].style.top,imgArr[i].style.left)
+                }
+                
+            }
+        }
+        
+    </script>
+</head>
+<body>
+    <main>
+        <div class="imgTank">
+            <img src="./img/01.png" alt="">
+        </div>
+        <div class="imgTank">
+            <img src="./img/02.png" alt="">
+        </div>
+        <div class="imgTank">
+            <img src="./img/03.jpg" alt="">
+        </div>
+        <div class="imgTank">
+            <img src="./img/04.jpg" alt="">
+        </div>
+        <div class="imgTank">
+            <img src="./img/05.jpg" alt="">
+        </div>
+        <div class="imgTank">
+            <img src="./img/06.jpg" alt="">
+        </div>
+        <div class="imgTank">
+            <img src="./img/07.jpg" alt="">
+        </div>
+        <div class="imgTank">
+            <img src="./img/08.jpg" alt="">
+        </div>
+        <div class="imgTank">
+            <img src="./img/09.jpg" alt="">
+        </div>
+        <div class="imgTank">
+            <img src="./img/10.jpg" alt="">
+        </div>
+        <div class="imgTank">
+            <img src="./img/11.jpg" alt="">
+        </div>
+        <div class="imgTank">
+            <img src="./img/12.jpg" alt="">
+        </div>
+    </main>
+</body>
+</html>
