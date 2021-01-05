@@ -1,0 +1,42 @@
+body{
+    background-color: blue;
+}
+#tank{
+    width: 576px;
+    height: 180px;
+    margin: 200px auto;
+    border: 3px solid yellow;
+    position: relative;
+    overflow: hidden;
+    #change{
+        position: absolute;
+        z-index: 9999;
+        top: 160px;
+        left: 50%;
+        transform: translateX(-50%);
+        div{
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: black;
+            float: left;
+            margin: 0 5px;
+            .on{
+                background-color: red;
+            }
+        }
+    }
+    #imgTank{
+        padding: 0px;
+        margin: 0px;
+        list-style: none;
+        position: absolute;
+        left : 0px;
+        li{
+            float: left;
+            img{
+                width: 576px;
+            }
+        }
+    }
+}

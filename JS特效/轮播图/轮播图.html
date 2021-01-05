@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        body{
+            background-color: pink;
+        }
+        .showWindow{
+            width: 960px;
+            height: 300px;
+            margin: 200px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        #tank{
+            margin: auto;
+            position: relative;
+            list-style: none;
+            left: 0px;
+            transition: left 1s linear;
+        }
+        #tank li{
+            width: 960px;
+            float: left;
+            position: relative;
+        }
+        #tank img{
+            width: 960px;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            let lis = document.getElementById('tank').getElementsByTagName("li")
+            let tank = document.getElementById('tank')
+            li_width = lis[0].offsetWidth
+            tank.style.width = li_width * (lis.length) + "px"
+            setInterval(()=>{
+                var length = this.li_width;
+                var tankPosition = Number.parseInt(this.tank.offsetLeft)
+                this.tank.style.left = tankPosition - length + "px"
+                if(tankPosition === -(tank.offsetWidth-length)){
+                    
+                }
+            },2000)
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <div class="showWindow">
+        <ul id="tank">
+            <li><img src="https://res2.vmallres.com/shopdc/pic/de010535-d91c-43ff-881b-d0aee5ffb193.png" alt=""></li>
+            <li><img src="https://res9.vmallres.com/shopdc/pic/20201229/c602be3d-909a-4c2c-a75e-602b64ad7266.jpg" alt=""></li>
+            <li><img src="https://res9.vmallres.com/shopdc/pic/20201229/cfaa99f6-87dd-46d8-bb31-68bbc4c0f3ce.jpg" alt=""></li>
+        </ul>
+        </div>
+        <!-- <img src="https://res9.vmallres.com/shopdc/pic/20201226/8c0b9b63-3dc2-45c3-851d-abb8e116f319.png" alt=""> -->
+    </div>
+</body>
+</html>

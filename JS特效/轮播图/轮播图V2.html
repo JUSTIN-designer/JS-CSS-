@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style_v2.css">
+    <script>
+        window.onload = function(){
+            //获取img容器 即轮播图的ul，imgList
+            var imgList = document.getElementById("imgTank")
+            //获取各个Li
+            var lis = imgList.getElementsByTagName("li")
+            //添加一个新的li，并将其内容设计为显示第一张图片
+            //获取第一张图片的src
+            var img1Src=lis[0].getElementsByTagName("img")[0].src
+            //将第一张图片添加到最后
+            addImg(img1Src,imgList)
+            //根据实际的图片数量和图片尺寸计算出容器的width
+            imgList.style.width = 576*lis.length + "px"
+            //开启定时器，每3s移动一张图片的距离
+            var num = 0
+            autoChange()
+            //为切换按钮添加单击响应函数
+            //获取按钮
+            var  btns = document.getElementById("change").getElementsByTagName("div")
+            Array.prototype.slice.call(btns).forEach((btn,index) => {
+                btn.onclick = function(){
+                    clearInterval(window.timer)
+                    move(imgList,"left",50,-576*index,function(){
+                        resetIMG();
+                        num = index;
+                        autoChange()
+                    })
+                }
+            });
+            function autoChange(){
+                this.timer = setInterval(()=>{
+                num++
+                move(imgList,"left",50,-576*num,resetIMG)
+                console.log(num)
+                //当显示最后一张图片后，切换到第一张图片，并将容器整体返回到left==0的位置
+            },5000)
+            }
+            
+            //使用JS来替代移动时的过渡效果
+            function move(target,direction,speed,distance,cb){
+                clearInterval(target.timer)
+                //得到目标的起始位置
+                var start = parseInt(window.getComputedStyle(target,null)[direction])
+                var length = start
+                //定义定时器，每30ms执行一次回调函数
+                target.timer = setInterval(function(){
+                    //累加速度的值，从而得到距离
+                    if(distance >= start){
+                        length += speed
+                        if(length >= distance){
+                        length = distance
+                        }
+                    }else{
+                        length -= speed
+                        if(length <= distance){
+                        length = distance
+                    }
+                    }
+                    //判断距离的值是否会超过目标距离，若超过则修改距离，让距离等于目标距离
+
+                    //移动目标 
+                    target.style[direction] = length + "px"
+                    //当距离与目标距离相等时，结束定时，并执行回调函数
+                    if(length === distance){
+                        clearInterval(target.timer)
+                        console.log('--------------------')
+                        cb && cb()
+                    }
+                },30)
+            }
+            //为图片的最后添加第一张图片
+            function addImg(src,parNode){
+                var li = document.createElement("li")
+                li.innerHTML = `<img src="${src}" alt="">`
+                parNode.appendChild(li)
+            }
+            function resetIMG(){
+                    if(num === (lis.length-1)){
+                            imgList.style.left = 0 + "px"
+                            num = 0 ;
+                    }
+                }
+        }
+
+    </script>
+
+</head>
+<body>
+    <div id="tank">
+        <div id="change">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <ul id="imgTank">
+            <li><img src="https://res2.vmallres.com/shopdc/pic/de010535-d91c-43ff-881b-d0aee5ffb193.png" alt=""></li>
+            <li><img src="https://res9.vmallres.com/shopdc/pic/20201229/c602be3d-909a-4c2c-a75e-602b64ad7266.jpg" alt=""></li>
+            <li><img src="https://res9.vmallres.com/shopdc/pic/20201229/cfaa99f6-87dd-46d8-bb31-68bbc4c0f3ce.jpg" alt=""></li>
+            <li><img src="https://res9.vmallres.com/shopdc/pic/202114/d3674c1a-056c-414a-881a-c9a3e4554f07.png" alt=""></li>
+            <li><img src="https://res8.vmallres.com/shopdcGray/shopdc/pic/4e31588f-5f18-4a50-96d8-7e45c212282f.jpg" alt=""></li>
+        </ul>
+
+    </div>
+</body>
+</html>
