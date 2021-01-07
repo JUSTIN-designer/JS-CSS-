@@ -13,9 +13,9 @@
             var lis = imgList.getElementsByTagName("li")
             //添加一个新的li，并将其内容设计为显示第一张图片
             //获取第一张图片的src
-            var img1Src=lis[0].getElementsByTagName("img")[0].src
+            var firstImgSrc=lis[0].getElementsByTagName("img")[0].src
             //将第一张图片添加到最后
-            addImg(img1Src,imgList)
+            addfirstImg(firstImgSrc,imgList)
             //根据实际的图片数量和图片尺寸计算出容器的width
             imgList.style.width = 576*lis.length + "px"
             //开启定时器，每3s移动一张图片的距离
@@ -38,7 +38,6 @@
                 this.timer = setInterval(()=>{
                 num++
                 move(imgList,"left",50,-576*num,resetIMG)
-                console.log(num)
                 //当显示最后一张图片后，切换到第一张图片，并将容器整体返回到left==0的位置
             },5000)
             }
@@ -70,15 +69,14 @@
                     //当距离与目标距离相等时，结束定时，并执行回调函数
                     if(length === distance){
                         clearInterval(target.timer)
-                        console.log('--------------------')
                         cb && cb()
                     }
                 },30)
             }
             //为图片的最后添加第一张图片
-            function addImg(src,parNode){
+            function addfirstImg(firstSrc,parNode){
                 var li = document.createElement("li")
-                li.innerHTML = `<img src="${src}" alt="">`
+                li.innerHTML = `<img src="${firstSrc}" alt="">`
                 parNode.appendChild(li)
             }
             function resetIMG(){

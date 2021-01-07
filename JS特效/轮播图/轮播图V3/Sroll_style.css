@@ -1,0 +1,30 @@
+#pagination_tank {
+  position: absolute;
+  z-index: 9999;
+  list-style: none;
+  top: 160px;
+  display: flex;
+  justify-content: center;
+}
+#pagination_tank li {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  float: left;
+  margin: 0 5px;
+  text-align: center;
+}
+#pagination_tank li:hover {
+  width: 10px;
+  height: 10px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 1;
+}
+#pagination_tank li.on {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 1;
+}
