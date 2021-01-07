@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <div id="content">
+            <p v-text="name"></p>
+            <p>{{name}}</p>
+            <p v-html="link"></p>
+            <button v-on:click="changeName"></button>
+            <input type="text" v-model = "msg">
+            <p>{{msg}}</p>
+        </div>
+    </main>
+    <script src="./compile.js"></script>
+    <script src="./MVVM.js"></script>
+    <script src="./observer.js"></script>
+    <script src="./watcher.js"></script>
+<script>    
+    new MVVM({
+        el:"#content",
+        data:{
+            name:'MJT',
+            link:'<a href="www.baidu.com">百度</a>',
+            msg:"123"
+        },
+        methods: {
+            changeName(){
+               this.name = "JUSTIN"
+                console.log(this)
+            }
+        },
+    })
+</script>
+</body>
+</html>
