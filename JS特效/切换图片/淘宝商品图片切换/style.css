@@ -1,0 +1,40 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+}
+.tank {
+  width: 700px;
+  height: 500px;
+  margin: 100px auto;
+  border: #3C3C3C solid 1px;
+}
+.tank .show-contain {
+  width: 700px;
+  height: 400px;
+  padding: 0px;
+  background-image: url(https://res2.vmallres.com/shopdc/pic/de010535-d91c-43ff-881b-d0aee5ffb193.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.tank .img-item {
+  float: left;
+  width: 150px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 2px 3px;
+}
+.tank .img-item img {
+  width: 100%;
+}
+.tank .img-item:hover {
+  margin: 0px 1px;
+  border: 2px solid red;
+}
+.tank .img-item.on {
+  margin: 0px 1px;
+  border: 2px solid red;
+}
